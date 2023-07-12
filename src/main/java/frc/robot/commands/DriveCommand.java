@@ -4,14 +4,17 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class DriveCommand extends CommandBase {
   public DriveSubsystem m_driveSubsystem;
+  private XboxController m_Controller;
   /** Creates a new DriveCommand. */
-  public DriveCommand(DriveSubsystem driveSubsystemPara) {
+  public DriveCommand(DriveSubsystem driveSubsystemPara, XboxController controllerPara) {
     m_driveSubsystem = driveSubsystemPara;
+    m_Controller = controllerPara;
     addRequirements(m_driveSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
   }
@@ -25,7 +28,9 @@ public class DriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    this.m_driveSubsystem.velocityControl(3000);
+    double triggerValue = this.m_Controller.getRawAxis(2);
+    System.out.println(triggerValue);
+    this.m_driveSubsystem.velocityControl(triggerValue);
   }
 
   // Called once the command ends or is interrupted.

@@ -29,6 +29,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
+    this.m_driveSubsystem.setDefaultCommand(new DriveCommand(this.m_driveSubsystem, this.m_driverController));
     configureBindings();
   }
 
@@ -43,7 +44,8 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // this.m_buttonA.onTrue(new DriveCommand(this.m_driveSubsystem));
-    this.m_buttonA.whileTrue(new DriveCommand(this.m_driveSubsystem));
+    // this.m_buttonA.whileTrue(new DriveCommand(this.m_driveSubsystem));
+
 
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
 
