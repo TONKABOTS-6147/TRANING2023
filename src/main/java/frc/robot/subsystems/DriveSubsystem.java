@@ -26,12 +26,6 @@ public class DriveSubsystem extends SubsystemBase {
     this.backRightMotor = new TalonFX(1);
     this.driveMotorArray = new TalonFX[] { this.frontLeftMotor, this.frontRightMotor, this.backLeftMotor, this.backRightMotor };
 
-    this.frontLeftMotor.setInverted(false);
-    this.frontRightMotor.setInverted(true);
-    this.backLeftMotor.setInverted(false);
-    this.backRightMotor.setInverted(true);
-
-
     for (TalonFX motor : this.driveMotorArray) {
       motor.configFactoryDefault();
       motor.setNeutralMode(NeutralMode.Brake);
@@ -39,6 +33,11 @@ public class DriveSubsystem extends SubsystemBase {
       motor.config_kI(0, 0);
       motor.config_kD(0, 0);
     }
+
+    this.frontLeftMotor.setInverted(false);
+    this.frontRightMotor.setInverted(true);
+    this.backLeftMotor.setInverted(false);
+    this.backRightMotor.setInverted(true);
   }
 
   public void velocityControl (double trigger){
